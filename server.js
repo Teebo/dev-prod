@@ -20,7 +20,6 @@ mongoose.connection.on('err', function(err) {
 const app = express();
 app.use(bodyParser.json());
 
-
 // Generic error handler used by all endpoints.
 const handleError  =  (res, reason, message, code) => {
   console.log('ERROR: ' + reason);
@@ -28,14 +27,7 @@ const handleError  =  (res, reason, message, code) => {
 }
 
 app.post('/api/devWorkHistoryLog', (req, res) => {
-  const newDevWorkHistoryLog = req.body;
-
-  const newDevWorkHistory = new DevWorkHistory({
-    devEmail: 'emailll',
-    projectName: 'projecname..',
-    logMessage: 'message',
-    logTime: 'logtimmeee'
-  });
+  const newDevWorkHistory = new DevWorkHistory(req.body);
 
   newDevWorkHistory.save((err, doc) => {
     if(err) {

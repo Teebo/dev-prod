@@ -2,14 +2,29 @@
 
 const fs = require("fs");
 const fetch = require("node-fetch");
+const shell = require("shelljs");
+
+const formatString = (str) => str.replace(/(\r\n|\n|\r)/gm, "");
 
 let commitMessage = fs.readFileSync(process.argv[2], { encoding: "utf-8" });
+const cwd = shell.pwd().stdout;
+
+const packagesJSON = require(`${cwd}/package.json`);
+const devName = (shell.exec('git config user.name').stdout);
+const devEmail = shell.exec('git config user.email').stdout;
+const projectRemoteOrigin = shell.exec('git config remote.origin.url').stdout;
 
 const body = {
-  devEmail: "emailll",
-  projectName: "projecname..",
-  logMessage: commitMessage,
-  logTime: "logtimmeee"
+  devName: formatString(devName),
+  devEmail: formatString(devEmail),
+  projectName: formatString(packagesJSON.name),
+  logMessage: formatString(commitMessage),
+  logTime: new Date().toISOString(),
+  projectMetadata: {
+    name: formatString(packagesJSON.name),
+    repository: formatString(packagesJSON.repository || '')
+  },
+  projectRemoteOrigin: formatString(projectRemoteOrigin)
 };
 
 fetch("https://tranquil-crag-92279.herokuapp.com/api/devWorkHistoryLog", {
