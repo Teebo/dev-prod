@@ -14,12 +14,12 @@ const body = {
 
 fetch("https://tranquil-crag-92279.herokuapp.com/api/devWorkHistoryLog", {
   method: "post",
-  body: JSON.stringify(),
+  body: JSON.stringify(body),
   headers: { "Content-Type": "application/json" }
 })
   .then(res => res.json())
   .then(json => {
-    console.log(json, "dfd");
+    console.log(json);
   })
   .catch(err => {
     console.log("Error:", err);
