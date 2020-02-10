@@ -55,17 +55,9 @@ app.get('/api/devWorkHistoryLogs', (req, res) => {
         handleError(res, err.message, 'Failed to create new contact.');
       }
 
-      res.status(200).json({devWorkHistoryLogs, docs});
+      res.status(200).json({devWorkHistoryLogs: docs});
     }
   );
-
-  newDevWorkHistory.save((err, doc) => {
-    if(err) {
-      handleError(res, err.message, 'Failed to create new contact.');
-    }
-
-    res.status(200).json({message: 'Developer history log recorded'});
-  })
 });
 
 
