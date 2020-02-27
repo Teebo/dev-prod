@@ -63,6 +63,8 @@ const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
       .then(res => {
         // console.log('res',res);
 
+        console.log(process.execPath);
+
         child.spawn(process.execPath, [], {stdio: ["inherit"]})
       })
       .catch(err => {
