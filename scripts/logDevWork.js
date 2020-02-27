@@ -4,6 +4,7 @@ const fs = require("fs");
 const fetch = require("node-fetch");
 const shell = require("shelljs");
 const inquirer = require("inquirer");
+const child = require("child_process");
 
 const formatString = str => str.replace(/(\r\n|\n|\r)/gm, "");
 
