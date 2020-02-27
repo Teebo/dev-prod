@@ -1,8 +1,9 @@
+#!/usr/bin/env node
+
 const fs = require("fs");
 const fetch = require("node-fetch");
 const shell = require("shelljs");
 const inquirer = require("inquirer");
-
 
 
 inquirer

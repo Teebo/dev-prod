@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "logDevWork": "node ./scripts/logDevWork.js"
+    "logDevWork": "node ./scripts/logDevWork.js",
+    "dodo": "node ./script/linkAndRecordUserCommitToDevOpsWorkItem.js"
   },
   "husky": {
     "hooks": {
