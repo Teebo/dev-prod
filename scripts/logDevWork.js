@@ -4,7 +4,7 @@ const fs = require("fs");
 const fetch = require("node-fetch");
 const shell = require("shelljs");
 const inquirer = require("inquirer");
-const  exec  = require('child_process').exec;
+const  child  = require('child_process');
 
 const formatString = str => str.replace(/(\r\n|\n|\r)/gm, "");
 
@@ -61,7 +61,8 @@ const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
     })
       .then(res => res.json())
       .then(res => {
-        shell.exec('npm run dodo');
+        console.log(child.spawn);
+        // shell.exec('npm run ./scripts/linkAndRecordUserCommitToDevOpsWorkItem');
       })
       .catch(err => {
         console.log("Error:", err);
