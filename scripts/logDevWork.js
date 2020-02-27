@@ -45,7 +45,7 @@ const recordUserCommitHistory = async () => {
 const recordingResults = async () => {
   const res = await recordUserCommitHistory();
 
-  return res;
+  return await res;
 }
 
 
