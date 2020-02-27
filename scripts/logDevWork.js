@@ -27,15 +27,26 @@ const body = {
   projectRemoteOrigin: formatString(projectRemoteOrigin)
 };
 
-fetch("https://tranquil-crag-92279.herokuapp.com/api/devWorkHistoryLog", {
-  method: "post",
-  body: JSON.stringify(body),
-  headers: { "Content-Type": "application/json" }
-})
-  .then(res => res.json())
-  .then(json => {
-    console.log(json);
+const recordUserCommitHistory = async () => {
+  return fetch("https://tranquil-crag-92279.herokuapp.com/api/devWorkHistoryLog", {
+    method: "post",
+    body: JSON.stringify(body),
+    headers: { "Content-Type": "application/json" }
   })
-  .catch(err => {
-    console.log("Error:", err);
+    .then(res => res.json())
+    .then(() => {
+      return true;
+    })
+    .catch(err => {
+      console.log("Error:", err);
   });
+};
+
+const recordingResults = async () => {
+  const res = await recordUserCommitHistory();
+
+  return res;
+}
+
+
+console.log('Res...', recordingResults());
