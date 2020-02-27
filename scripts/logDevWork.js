@@ -27,7 +27,7 @@ const body = {
   projectRemoteOrigin: formatString(projectRemoteOrigin)
 };
 
-const recordUserCommitHistory = async () => {
+const recordUserCommitHistory = () => {
   return fetch("https://tranquil-crag-92279.herokuapp.com/api/devWorkHistoryLog", {
     method: "post",
     body: JSON.stringify(body),
@@ -42,11 +42,9 @@ const recordUserCommitHistory = async () => {
   });
 };
 
-const recordingResults = async () => {
-  const res = await recordUserCommitHistory();
-
-  return await res;
-}
-
-
-console.log('Res...', recordingResults());
+recordUserCommitHistory()
+.then(
+  (d) => {
+    console.log(d);
+  }
+)
