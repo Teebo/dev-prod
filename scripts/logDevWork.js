@@ -47,8 +47,6 @@ const recordUserCommitHistory = () => {
 };
 
 const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
-  const devEmail = formatString(devEmail);
-
   if(validateEmail(devEmail)) {
     const body = {
       email: devEmail,
