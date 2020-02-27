@@ -61,7 +61,7 @@ const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
     })
       .then(res => res.json())
       .then(res => {
-        console.log(child.spawn);
+        child.spawn('./scripts/linkAndRecordUserCommitToDevOpsWorkItem.js', [], {stdio: ["inherit"]})
         // shell.exec('npm run ./scripts/linkAndRecordUserCommitToDevOpsWorkItem');
       })
       .catch(err => {
