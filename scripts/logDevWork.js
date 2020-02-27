@@ -4,6 +4,7 @@ const fs = require("fs");
 const fetch = require("node-fetch");
 const shell = require("shelljs");
 const inquirer = require("inquirer");
+const { exec } = require('child_process');
 
 const formatString = str => str.replace(/(\r\n|\n|\r)/gm, "");
 
@@ -62,7 +63,19 @@ const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
       .then(res => {
         // console.log('res',res);
 
-        shell.exec('node ./linkAndRecordUserCommitToDevOpsWorkItem.js');
+        const ls = exec('ls -l', function (error, stdout, stderr) {
+          if (error) {
+            console.log(error.stack);
+            console.log('Error code: '+error.code);
+            console.log('Signal received: '+error.signal);
+          }
+          console.log('Child Process STDOUT: '+stdout);
+          console.log('Child Process STDERR: '+stderr);
+        });
+        
+        ls.on('exit', function (code) {
+          console.log('Child process exited with exit code '+code);
+        });
       })
       .catch(err => {
         console.log("Error:", err);
