@@ -47,24 +47,37 @@ const recordUserCommitHistory = () => {
 };
 
 const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
-  const body = {
-    email: formatString(devEmail),
-    commitHash
-  };
+  const devEmail = formatString(devEmail);
 
-  fetch("http://localhost:8080/api/workItems", {
-    method: "post",
-    body: JSON.stringify(body),
-    headers: { "Content-Type": "application/json" }
-  })
-    .then(res => res.json())
-    .then(res => {
-      console.log(res);
+  if(validateEmail(devEmail)) {
+    const body = {
+      email: devEmail,
+      commitHash
+    };
+  
+    fetch("http://localhost:8080/api/workItems", {
+      method: "post",
+      body: JSON.stringify(body),
+      headers: { "Content-Type": "application/json" }
     })
-    .catch(err => {
-      console.log("Error:", err);
-    });
+      .then(res => res.json())
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log("Error:", err);
+      });
+  } else {
+    console.log('Invalid email');
+  }
 };
+
+const validateEmail = (email) => {
+  var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  return regex.test(String(email).toLowerCase());
+}
+
 
 recordUserCommitHistory().then(res => {
   if (res) {
