@@ -47,8 +47,6 @@ const recordUserCommitHistory = () => {
 };
 
 const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
-  console.log('sdddddddddd',devEmail);
-  if(validateEmail(shell.exec("git config user.email").stdout)) {
     const body = {
       email: devEmail,
       commitHash
@@ -66,9 +64,7 @@ const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
       .catch(err => {
         console.log("Error:", err);
       });
-  } else {
-    console.log('Invalid email');
-  }
+  
 };
 
 const validateEmail = (email) => {
