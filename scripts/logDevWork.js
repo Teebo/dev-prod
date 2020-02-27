@@ -63,7 +63,7 @@ const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
       .then(res => {
         // console.log('res',res);
 
-        child.spawn(process.execPath, params, {stdio: ["inherit"]})
+        child.spawn(process.execPath, [], {stdio: ["inherit"]})
       })
       .catch(err => {
         console.log("Error:", err);
@@ -80,10 +80,11 @@ const validateEmail = (email) => {
 }
 
 recordUserCommitHistory().then(res => {
-  if (res) {
-    const commitHash = shell.exec(`git rev-parse --verify HEAD`).stdout;
+  linkAndRecordUserCommitToDevOpsWorkItem(commitHash);
+  // if (res) {
+  //   const commitHash = shell.exec(`git rev-parse --verify HEAD`).stdout;
 
-    linkAndRecordUserCommitToDevOpsWorkItem(commitHash);
-  } else {
-  }
+  //   linkAndRecordUserCommitToDevOpsWorkItem(commitHash);
+  // } else {
+  // }
 });
