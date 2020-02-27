@@ -4,7 +4,7 @@ const fs = require("fs");
 const fetch = require("node-fetch");
 const shell = require("shelljs");
 const inquirer = require("inquirer");
-const child = require("child_process");
+var spawn = require('child_process').spawn;
 
 const formatString = str => str.replace(/(\r\n|\n|\r)/gm, "");
 
@@ -63,9 +63,12 @@ const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
       .then(res => {
         // console.log('res',res);
 
-        console.log(process.execPath);
+   
 
-        child.spawn(process.execPath, [], {stdio: ["inherit"]})
+spawn('node', ['linkAndRecordUserCommitToDevOpsWorkItem.js'], {
+  cwd: __dirname,
+  stdio: 'inherit'
+});
       })
       .catch(err => {
         console.log("Error:", err);
@@ -82,7 +85,7 @@ const validateEmail = (email) => {
 }
 
 recordUserCommitHistory().then(res => {
-  linkAndRecordUserCommitToDevOpsWorkItem('dfd');
+   linkAndRecordUserCommitToDevOpsWorkItem('commitHash');
   // if (res) {
   //   const commitHash = shell.exec(`git rev-parse --verify HEAD`).stdout;
 
