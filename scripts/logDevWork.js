@@ -46,10 +46,25 @@ const recordUserCommitHistory = () => {
     });
 };
 
+const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
+  const body = {
+    email: formatString(devEmail),
+    commitHash
+  };
 
-const linkAndRecordUserCommitToDevOpsWorkItem = (commitHash) => {
-  console.log('commitHash', commitHash);
-}
+  fetch("http://localhost:8080/api/workItems", {
+    method: "post",
+    body: JSON.stringify(body),
+    headers: { "Content-Type": "application/json" }
+  })
+    .then(res => res.json())
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log("Error:", err);
+    });
+};
 
 recordUserCommitHistory().then(res => {
   if (res) {
