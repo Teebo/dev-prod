@@ -53,11 +53,9 @@ const linkAndRecordUserCommitToDevOpsWorkItem = (commitHash) => {
 
 recordUserCommitHistory().then(res => {
   if (res) {
-    // const commitHash = shell.exec(`git rev-parse --verify HEAD`).stdout;
+    const commitHash = shell.exec(`git rev-parse --verify HEAD`).stdout;
 
-    // console.log('WHWHWHWHW', commitHash);
-
-    // linkAndRecordUserCommitToDevOpsWorkItem(commitHash);
+    linkAndRecordUserCommitToDevOpsWorkItem(commitHash);
   } else {
   }
 });
