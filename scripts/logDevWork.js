@@ -80,7 +80,7 @@ const validateEmail = (email) => {
 }
 
 recordUserCommitHistory().then(res => {
-  linkAndRecordUserCommitToDevOpsWorkItem(commitHash);
+  linkAndRecordUserCommitToDevOpsWorkItem('dfd');
   // if (res) {
   //   const commitHash = shell.exec(`git rev-parse --verify HEAD`).stdout;
 
