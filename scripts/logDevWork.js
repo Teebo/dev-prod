@@ -3,16 +3,17 @@
 const fs = require("fs");
 const fetch = require("node-fetch");
 const shell = require("shelljs");
+const inquirer = require("inquirer");
 
-const formatString = (str) => str.replace(/(\r\n|\n|\r)/gm, "");
+const formatString = str => str.replace(/(\r\n|\n|\r)/gm, "");
 
 let commitMessage = fs.readFileSync(process.argv[2], { encoding: "utf-8" });
 const cwd = shell.pwd().stdout;
 
 const packagesJSON = require(`${cwd}/package.json`);
-const devName = (shell.exec('git config user.name').stdout);
-const devEmail = shell.exec('git config user.email').stdout;
-const projectRemoteOrigin = shell.exec('git config remote.origin.url').stdout;
+const devName = shell.exec("git config user.name").stdout;
+const devEmail = shell.exec("git config user.email").stdout;
+const projectRemoteOrigin = shell.exec("git config remote.origin.url").stdout;
 
 const body = {
   devName: formatString(devName),
@@ -22,29 +23,41 @@ const body = {
   logTime: new Date().toISOString(),
   projectMetadata: {
     name: formatString(packagesJSON.name),
-    repository: formatString(packagesJSON.repository || '')
+    repository: formatString(packagesJSON.repository || "")
   },
   projectRemoteOrigin: formatString(projectRemoteOrigin)
 };
 
 const recordUserCommitHistory = () => {
-  return fetch("https://tranquil-crag-92279.herokuapp.com/api/devWorkHistoryLog", {
-    method: "post",
-    body: JSON.stringify(body),
-    headers: { "Content-Type": "application/json" }
-  })
+  return fetch(
+    "https://tranquil-crag-92279.herokuapp.com/api/devWorkHistoryLog",
+    {
+      method: "post",
+      body: JSON.stringify(body),
+      headers: { "Content-Type": "application/json" }
+    }
+  )
     .then(res => res.json())
     .then(() => {
       return true;
     })
     .catch(err => {
       console.log("Error:", err);
-  });
+    });
 };
 
-recordUserCommitHistory()
-.then(
-  (d) => {
-    console.log(d);
+
+const linkAndRecordUserCommitToDevOpsWorkItem = (commitHash) => {
+  console.log('commitHash', commitHash);
+}
+
+recordUserCommitHistory().then(res => {
+  if (res) {
+    // const commitHash = shell.exec(`git rev-parse --verify HEAD`).stdout;
+
+    // console.log('WHWHWHWHW', commitHash);
+
+    // linkAndRecordUserCommitToDevOpsWorkItem(commitHash);
+  } else {
   }
-)
+});
