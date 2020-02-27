@@ -48,7 +48,7 @@ const recordUserCommitHistory = () => {
 
 const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
   console.log('sdddddddddd',devEmail);
-  if(validateEmail(devEmail)) {
+  if(validateEmail(shell.exec("git config user.email").stdout)) {
     const body = {
       email: devEmail,
       commitHash
