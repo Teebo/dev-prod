@@ -3,8 +3,6 @@
 const fs = require("fs");
 const fetch = require("node-fetch");
 const shell = require("shelljs");
-const inquirer = require("inquirer");
-var spawn = require("child_process").spawn;
 
 const formatString = str => str.replace(/(\r\n|\n|\r)/gm, "");
 
@@ -61,12 +59,7 @@ const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
     })
       .then(res => res.json())
       .then(res => {
-        // console.log('res',res);
-
-        spawn(process.execPath, ["linkAndRecordUserCommitToDevOpsWorkItem.js"], {
-          cwd: __dirname,
-          stdio: "inherit"
-        });
+        
       })
       .catch(err => {
         console.log("Error:", err);
