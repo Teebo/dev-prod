@@ -24,8 +24,6 @@ const generateEmailTemplate = (workItems, forHTML=false) => {
     }
   });
 
-  console.log('workItemTableRows', workItemTableRows);
-
   return `
   <h2>Work items</h2>
     <table style="font-family: arial, sans-serif;
@@ -60,7 +58,7 @@ const sendMail = (devEmail, workItems) => {
 
   let mailOptions = {
     from: "thabo@basalt.co",
-    to: devEmail,
+    to: 'ngubanethabo.ambrose@gmail.com',
     subject: "Multiple work items in progress",
     text: generateEmailTemplate(workItems, false),
     html: generateEmailTemplate(workItems, true)
