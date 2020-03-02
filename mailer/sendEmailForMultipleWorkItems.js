@@ -30,7 +30,7 @@ const generateEmailTemplate = (workItems, forHTML=false) => {
       </tr>  
       `;
     } else {
-      workItemTableRows += `${workItem.id}  ${workItem.title} <a href="www.somewhere.com" class="action-button">Mark as in progress</a>`
+      workItemTableRows += `${workItem.id}  ${workItem.title} <a href="www.somewheree.com" class="action-button">Mark as in progress</a>`
     }
   });
 
