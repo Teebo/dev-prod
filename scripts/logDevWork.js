@@ -61,9 +61,8 @@ const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
     })
       .then(res => res.json())
       .then(res => {
+        console.log(res);
         if (res.code === SERVER_RESPONSE_CODES.multipleTaskInProgress) {
-          console.log("SEND EMAIL TO ", formatString(devEmail));
-
           sendMail(formatString(devEmail))
           .then(
             (data) => {
