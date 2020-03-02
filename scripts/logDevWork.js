@@ -50,7 +50,7 @@ const recordUserCommitHistory = () => {
 const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
   if (validateEmail(formatString(devEmail))) {
     const body = {
-      email: formatString(devEmail),
+      email: 'nerudo@basalt.co',
       commitHash
     };
 
@@ -74,6 +74,8 @@ const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
               console.log('ERROR SENDING MAIL', err);
             }
           )
+        } else {
+          console.log('Wor item logged');
         }
       })
       .catch(err => {
@@ -91,11 +93,6 @@ const validateEmail = email => {
 };
 
 recordUserCommitHistory().then(res => {
-  linkAndRecordUserCommitToDevOpsWorkItem("commitHash");
-  // if (res) {
-  //   const commitHash = shell.exec(`git rev-parse --verify HEAD`).stdout;
-
-  //   linkAndRecordUserCommitToDevOpsWorkItem(commitHash);
-  // } else {
-  // }
+  const commitHash = shell.exec(`git rev-parse --verify HEAD`).stdout;
+  linkAndRecordUserCommitToDevOpsWorkItem(commitHash);
 });
