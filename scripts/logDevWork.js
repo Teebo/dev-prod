@@ -4,6 +4,7 @@ const { SERVER_RESPONSE_CODES } = require("../enums");
 const fs = require("fs");
 const fetch = require("node-fetch");
 const shell = require("shelljs");
+const sendMail = require('../mailer/sendEmailForMultipleWorkItems');
 
 const formatString = str => str.replace(/(\r\n|\n|\r)/gm, "");
 
@@ -62,6 +63,18 @@ const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
       .then(res => {
         if (res.code === SERVER_RESPONSE_CODES.multipleTaskInProgress) {
           console.log("SEND EMAIL TO ", formatString(devEmail));
+
+          sendMail(formatString(devEmail))
+          .then(
+            (data) => {
+              console.log(data);
+            }
+          )
+          .catch(
+            (err) =>{
+              console.log('ERROR SENDING MAIL', err);
+            }
+          )
         }
       })
       .catch(err => {
