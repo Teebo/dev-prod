@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+const { SERVER_RESPONSE_CODES } = require("../enums");
 
 const fs = require("fs");
 const fetch = require("node-fetch");
@@ -59,7 +60,9 @@ const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
     })
       .then(res => res.json())
       .then(res => {
-        console.log('RES', res);
+        if (res.code === SERVER_RESPONSE_CODES.multipleTaskInProgress) {
+          console.log("SEND EMAIL TO ", formatString(devEmail));
+        }
       })
       .catch(err => {
         console.log("Error:", err);
