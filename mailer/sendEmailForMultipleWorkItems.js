@@ -17,7 +17,7 @@ const generateEmailTemplate = (workItems, forHTML=false) => {
         <td style="border: 1px solid #dddddd;
         text-align: left;
         padding: 15px;">
-          <a href="www.somewhere.com" style="color: #fff!important;
+          <a href="https://tranquil-crag-92279.herokuapp.com/api/devWorkHistoryLogs" style="color: #fff!important;
           background-color: #2196F3!important;
           padding: 8px;
           text-decoration: none;
@@ -26,7 +26,7 @@ const generateEmailTemplate = (workItems, forHTML=false) => {
       </tr>  
       `;
     } else {
-      workItemTableRows += `${workItem.id}  ${workItem.title} <a href="www.somewhere.com" class="action-button">Mark as in progress</a>`
+      workItemTableRows += `${workItem.id}  ${workItem.title} <a href="https://tranquil-crag-92279.herokuapp.com/api/devWorkHistoryLogs" class="action-button">Mark as in progress</a>`
     }
   });
 
