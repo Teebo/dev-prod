@@ -13,7 +13,7 @@ mongoose.connection.on('err', function(err) {
   console.log('Could not connect to mongoDB at', dbURI);
   console.log('******************************');
   console.log(err);
-  console.log('******************************');
+  console.log('**************************8*****');
   process.exit(1);
 });
 
