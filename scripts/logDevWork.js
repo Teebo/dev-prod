@@ -75,7 +75,7 @@ const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
             }
           )
         } else {
-          console.log('Wor item logged');
+          console.log('Work item logged');
         }
       })
       .catch(err => {
