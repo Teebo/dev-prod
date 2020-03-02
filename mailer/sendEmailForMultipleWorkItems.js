@@ -1,7 +1,52 @@
 const nodemailer = require("nodemailer");
-const sendMail = (devEmail) => {
+
+const generateEmailTemplate = (workItems, forHTML=false) => {
+  let workItemTableRows = ``;
+
+  workItems.forEach(workItem => {
+
+    if(forHTML) {
+      workItemTableRows += `
+      <tr>
+        <td style="border: 1px solid #dddddd;
+        text-align: left;
+        padding: 15px;">${workItem.id}</td>
+        <td>${workItem.title}</td>
+        <td style="border: 1px solid #dddddd;
+        text-align: left;
+        padding: 15px;">
+          <a href="www.somewhere.com" class="action-button">Mark as in progress</a>
+        </td>
+      </tr>  
+      `;
+    } else {
+      workItemTableRows += `${workItem.id}  ${workItem.title} <a href="www.somewhere.com" class="action-button">Mark as in progress</a>`
+    }
+  });
+
+  return `
+  <h2>Work items</h2>
+    <table style="font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;">
+      <tr>
+        <th style="border: 1px solid #dddddd;
+        text-align: left;
+        padding: 15px;">ID</th>
+        <th style="border: 1px solid #dddddd;
+        text-align: left;
+        padding: 15px;">Title</th>
+        <th style="border: 1px solid #dddddd;
+        text-align: left;
+        padding: 15px;">Action</th>
+      </tr>
+      ${workItemTableRows}
+    </table>
+  `
+};
+const sendMail = (devEmail, workItems) => {
   let transporter = nodemailer.createTransport({
-    host: 'email-smtp.us-east-1.amazonaws.com',
+    host: "email-smtp.us-east-1.amazonaws.com",
     port: 465,
     secure: true,
     auth: {
@@ -11,15 +56,12 @@ const sendMail = (devEmail) => {
   });
 
   let mailOptions = {
-    from: 'thabo@basalt.co',
+    from: "thabo@basalt.co",
     to: devEmail,
     subject: "Multiple work items in progress",
-    text: 'Hey man',
-    html: `
-      Hey man
-    `
+    text: generateEmailTemplate(workItems, false),
+    html: generateEmailTemplate(workItems, true)
   };
-
 
   return transporter.sendMail(mailOptions);
 };
