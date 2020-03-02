@@ -17,7 +17,11 @@ const generateEmailTemplate = (workItems, forHTML=false) => {
         <td style="border: 1px solid #dddddd;
         text-align: left;
         padding: 15px;">
-          <a href="www.somewhere.com">Mark as in progress</a>
+          <a href="www.somewhere.com" style="color: #fff!important;
+          background-color: #2196F3!important;
+          padding: 8px;
+          text-decoration: none;
+          cursor: pointer;">Mark as in progress</a>
         </td>
       </tr>  
       `;
