@@ -11,26 +11,16 @@ const generateEmailTemplate = (workItems, forHTML=false) => {
         <td style="border: 1px solid #dddddd;
         text-align: left;
         padding: 15px;">${workItem.id}</td>
-        <td style="border: 1px solid #dddddd;
-        text-align: left;
-        padding: 15px;>${workItem.title}</td>
+        <td>${workItem.title}</td>
         <td style="border: 1px solid #dddddd;
         text-align: left;
         padding: 15px;">
-          <a href="www.somewhere.com" style="
-          color: #fff!important;
-          background-color: #2196F3!important;
-          width: auto;
-          height: auto;
-          padding: 8px;
-          text-decoration: none;
-          cursor: pointer
-          " >Mark as in progress</a>
+          <a href="www.somewhere.com" class="action-button">Mark as in progress</a>
         </td>
       </tr>  
       `;
     } else {
-      workItemTableRows += `${workItem.id}  ${workItem.title} <a href="www.somewhereee.com" class="action-button">Mark as in progress</a>`
+      workItemTableRows += `${workItem.id}  ${workItem.title} <a href="www.somewhere.com" class="action-button">Mark as in progress</a>`
     }
   });
 
@@ -55,6 +45,7 @@ const generateEmailTemplate = (workItems, forHTML=false) => {
   `
 };
 const sendMail = (devEmail, workItems) => {
+  console.log('SDFSFKJDSKF',workItems);
   let transporter = nodemailer.createTransport({
     host: "email-smtp.us-east-1.amazonaws.com",
     port: 465,
