@@ -64,7 +64,7 @@ const sendMail = (devEmail, workItems) => {
 
   let mailOptions = {
     from: "thabo@basalt.co",
-    to: 'ngubanethabo.ambrose@gmail.com',
+    to: devEmail,
     subject: "Multiple work items in progress",
     text: generateEmailTemplate(workItems, false),
     html: generateEmailTemplate(workItems, true)
