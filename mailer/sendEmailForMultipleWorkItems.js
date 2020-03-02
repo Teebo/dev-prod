@@ -11,7 +11,7 @@ const sendMail = (devEmail) => {
   });
 
   let mailOptions = {
-    from: 'sourcepolice@devops.code',
+    from: 'thabo@basalt.co',
     to: devEmail,
     subject: "Multiple work items in progress",
     text: 'Hey man',
