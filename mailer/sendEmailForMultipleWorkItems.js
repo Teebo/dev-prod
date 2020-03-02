@@ -32,13 +32,6 @@ const generateEmailTemplate = (workItems, forHTML=false) => {
 
   return `
   <h2>Work items in progress</h2>
-  <a href="https://tranquil-crag-92279.herokuapp.com/api/devWorkHistoryLogs" style="color: #fff!important;
-  background-color: #2196F3!important;
-  padding: 8px;
-  margin: 10px 0;
-  text-decoration: none;
-  cursor: pointer;">Mark all as in progress</a>
-
     <table style="font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;">
