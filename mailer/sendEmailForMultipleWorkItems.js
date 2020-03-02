@@ -24,6 +24,8 @@ const generateEmailTemplate = (workItems, forHTML=false) => {
     }
   });
 
+  console.log('workItemTableRows', workItemTableRows);
+
   return `
   <h2>Work items</h2>
     <table style="font-family: arial, sans-serif;

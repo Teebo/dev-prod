@@ -66,7 +66,7 @@ const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
           sendMail(formatString(devEmail), res.data)
           .then(
             (data) => {
-              console.log(data);
+              console.log('Mailer res:', data);
             }
           )
           .catch(
