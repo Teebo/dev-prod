@@ -59,7 +59,7 @@ const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
     })
       .then(res => res.json())
       .then(res => {
-        
+        console.log('RES', res);
       })
       .catch(err => {
         console.log("Error:", err);
