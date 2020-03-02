@@ -11,7 +11,9 @@ const generateEmailTemplate = (workItems, forHTML=false) => {
         <td style="border: 1px solid #dddddd;
         text-align: left;
         padding: 15px;">${workItem.id}</td>
-        <td>${workItem.title}</td>
+        <td style="border: 1px solid #dddddd;
+        text-align: left;
+        padding: 15px;">${workItem.title}</td>
         <td style="border: 1px solid #dddddd;
         text-align: left;
         padding: 15px;">
