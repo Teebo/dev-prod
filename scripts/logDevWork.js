@@ -63,7 +63,7 @@ const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
       .then(res => {
         console.log(res);
         if (res.code === SERVER_RESPONSE_CODES.multipleTaskInProgress) {
-          sendMail(formatString(devEmail), res)
+          sendMail(formatString(devEmail), res.data)
           .then(
             (data) => {
               console.log(data);

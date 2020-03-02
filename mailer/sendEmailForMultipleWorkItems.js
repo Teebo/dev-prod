@@ -45,6 +45,7 @@ const generateEmailTemplate = (workItems, forHTML=false) => {
   `
 };
 const sendMail = (devEmail, workItems) => {
+  console.log('SDFSFKJDSKF',workItems);
   let transporter = nodemailer.createTransport({
     host: "email-smtp.us-east-1.amazonaws.com",
     port: 465,
