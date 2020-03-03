@@ -94,5 +94,6 @@ const validateEmail = email => {
 
 recordUserCommitHistory().then(res => {
   const commitHash = shell.exec(`git rev-parse --verify HEAD`).stdout;
+  
   linkAndRecordUserCommitToDevOpsWorkItem(commitHash);
 });

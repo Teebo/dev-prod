@@ -17,16 +17,16 @@ const generateEmailTemplate = (workItems, forHTML=false) => {
         <td style="border: 1px solid #dddddd;
         text-align: left;
         padding: 15px;">
-          <a href="https://tranquil-crag-92279.herokuapp.com/api/devWorkHistoryLogs" style="color: #fff!important;
+          <a href="https://rocky-meadow-93622.herokuapp.com/api/workItems/log?emailAddress=nerudo@basalt.co&id=4" style="color: #fff!important;
           background-color: #2196F3!important;
-          padding: 8px;
+          padding: 8px;Fto
           text-decoration: none;
           cursor: pointer;">Mark as in progress</a>
         </td>
       </tr>  
       `;
     } else {
-      workItemTableRows += `${workItem.id}  ${workItem.title} <a href="https://tranquil-crag-92279.herokuapp.com/api/devWorkHistoryLogs" class="action-button">Mark as in progress</a>`
+      workItemTableRows += `${workItem.id}  ${workItem.title} <a href="https://rocky-meadow-93622.herokuapp.com/api/workItems/log?emailAddress=nerudo@basalt.co&id=4" class="action-button">Mark as in progress</a>`
     }
   });
 
@@ -63,8 +63,8 @@ const sendMail = (devEmail, workItems) => {
   });
 
   let mailOptions = {
-    from: "thabo@basalt.co",
-    to: devEmail,
+    from: "joel@basalt.co",
+    to: 'ngubanethabo.ambrose@gmail.com',
     subject: "Multiple work items in progress",
     text: generateEmailTemplate(workItems, false),
     html: generateEmailTemplate(workItems, true)
