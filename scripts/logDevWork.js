@@ -54,7 +54,7 @@ const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
       commitHash
     };
 
-    fetch("http://localhost:8080/api/workItems", {
+    fetch("https://rocky-meadow-93622.herokuapp.com/api/workItems", {
       method: "post",
       body: JSON.stringify(body),
       headers: { "Content-Type": "application/json" }
