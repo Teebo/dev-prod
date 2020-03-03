@@ -61,10 +61,9 @@ const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
     })
       .then(res => res.json())
       .then(res => {
-        console.log(res.code, SERVER_RESPONSE_CODES.multipleTaskInProgress);
         if (res.code === SERVER_RESPONSE_CODES.multipleTaskInProgress) {
           console.log('SKAPPdd');
-          sendMail(formatString(devEmail), res.data)
+          sendMail(formatString(devEmail), commitHash, res.data)
           .then(
             (data) => {
               console.log('Mailer response:', data);

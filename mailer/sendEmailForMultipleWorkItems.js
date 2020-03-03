@@ -1,9 +1,13 @@
 const nodemailer = require("nodemailer");
 
-const generateEmailTemplate = (workItems, forHTML=false) => {
+const generateEmailTemplate = (workItems, commitHash,forHTML=false) => {
   let workItemTableRows = ``;
 
   workItems.forEach(workItem => {
+    const emailDev = workItems.assignedTo.uniqueName;
+    const id = workItems.id;
+
+    console.log(`https://rocky-meadow-93622.herokuapp.com/api/workItems/log?emailAddress=${emailDev}&id=${id}&commitHash=${commitHash}`);
 
     if(forHTML) {
       workItemTableRows += `
@@ -17,7 +21,7 @@ const generateEmailTemplate = (workItems, forHTML=false) => {
         <td style="border: 1px solid #dddddd;
         text-align: left;
         padding: 15px;">
-          <a href="https://rocky-meadow-93622.herokuapp.com/api/workItems/log?emailAddress=nerudo@basalt.co&id=4" style="color: #fff!important;
+          <a href="https://rocky-meadow-93622.herokuapp.com/api/workItems/log?emailAddress=${emailDev}&id=${id}&commitHash=${commitHash}" style="color: #fff!important;
           background-color: #2196F3!important;
           padding: 8px;Fto
           text-decoration: none;
@@ -26,7 +30,7 @@ const generateEmailTemplate = (workItems, forHTML=false) => {
       </tr>  
       `;
     } else {
-      workItemTableRows += `${workItem.id}  ${workItem.title} <a href="https://rocky-meadow-93622.herokuapp.com/api/workItems/log?emailAddress=nerudo@basalt.co&id=4" class="action-button">Mark as in progress</a>`
+      workItemTableRows += `${workItem.id}  ${workItem.title} <a href="https://rocky-meadow-93622.herokuapp.com/api/workItems/log?emailAddress=${emailDev}&id=${id}&commitHash=${commitHash}" class="action-button">Mark as in progress</a>`
     }
   });
 
@@ -50,7 +54,7 @@ const generateEmailTemplate = (workItems, forHTML=false) => {
     </table>
   `
 };
-const sendMail = (devEmail, workItems) => {
+const sendMail = (devEmail, commitHash, workItems) => {
   console.log('SDFSFKJDSKF',workItems);
   let transporter = nodemailer.createTransport({
     // host: "email-smtp.us-east-1.amazonaws.com",
@@ -75,8 +79,8 @@ const sendMail = (devEmail, workItems) => {
     from: "nerudo@basalt.co",
     to: 'thabo@basalt.co',
     subject: "Multiple work items in progress",
-    text: generateEmailTemplate(workItems, false),
-    html: generateEmailTemplate(workItems, true)
+    text: generateEmailTemplate(workItems, commitHash,false),
+    html: generateEmailTemplate(workItems, commitHash,true)
   };
 
   return transporter.sendMail(mailOptions);
