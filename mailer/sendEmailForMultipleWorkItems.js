@@ -60,7 +60,9 @@ const sendMail = (devEmail, workItems) => {
     //   user: "thabo@basalt.co",
     //   pass: "4udX**ng"
     // }
+    host: 'smtp.gmail.com',
     port: 465,
+    secure: true, // use SSL
     auth: {
       user: "rellomailer@gmail.com",
       pass: "Rello@123"
