@@ -55,8 +55,8 @@ const sendMail = (devEmail, workItems) => {
   let transporter = nodemailer.createTransport({
     // host: "email-smtp.us-east-1.amazonaws.com",
     auth: {
-      user: "thabo@basalt.co",
-      pass: "4udX**ng"
+      user: "rellomailer@gmail.com",
+      pass: "Rello@123"
     }
   });
 
