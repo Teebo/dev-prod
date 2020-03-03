@@ -64,7 +64,7 @@ const sendMail = (devEmail, workItems) => {
     port: 587,
     secure: false,
     auth: {
-      user: "rellomailer@gmail.com ",
+      user: "rellomailer@gmail.com",
       pass: "Rello@123"
     }
   });
