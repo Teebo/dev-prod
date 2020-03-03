@@ -60,9 +60,6 @@ const sendMail = (devEmail, workItems) => {
     //   user: "thabo@basalt.co",
     //   pass: "4udX**ng"
     // }
-    host: "smtp.ethereal.email",
-    port: 587,
-    secure: false,
     auth: {
       user: "rellomailer@gmail.com",
       pass: "Rello@123"
