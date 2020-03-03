@@ -65,7 +65,7 @@ const sendMail = (devEmail, workItems) => {
     secure: false,
     auth: {
       user: "thabo@basalt.co",
-      pass: "4udX**ng"
+      pass: "u4dX**ng"
     }
   });
 
