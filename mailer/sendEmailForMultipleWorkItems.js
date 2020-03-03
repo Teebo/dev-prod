@@ -54,11 +54,22 @@ const sendMail = (devEmail, workItems) => {
   console.log('SDFSFKJDSKF',workItems);
   let transporter = nodemailer.createTransport({
     // host: "email-smtp.us-east-1.amazonaws.com",
+    // port: 465,
+    // secure: true,
+    // auth: {
+    //   user: "thabo@basalt.co",
+    //   pass: "4udX**ng"
+    // }
+    host: "smtp.ethereal.email",
+    port: 587,
+    secure: false,
     auth: {
-      user: "rellomailer@gmail.com",
-      pass: "Rello@123"
+      user: "thabo@basalt.co",
+      pass: "4udX**ng"
     }
   });
+
+
 
   let mailOptions = {
     from: "nerudo@basalt.co",
