@@ -7,8 +7,6 @@ const generateEmailTemplate = (workItems, commitHash,forHTML=false) => {
     const emailDev = workItem.assignedTo.uniqueName;
     const id = workItem.id;
 
-    console.log(`https://rocky-meadow-93622.herokuapp.com/api/workItems/log?emailAddress=${emailDev}&id=${id}&commitHash=${commitHash}`);
-
     if(forHTML) {
       workItemTableRows += `
       <tr>
