@@ -50,7 +50,7 @@ const recordUserCommitHistory = () => {
 const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
   if (validateEmail(formatString(devEmail))) {
     const body = {
-      email: 'nerudo@basalt.co',
+      email: 'thabo@basalt.co',
       commitHash
     };
 
@@ -63,7 +63,7 @@ const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
       .then(res => {
         console.log(res.code, SERVER_RESPONSE_CODES.multipleTaskInProgress);
         if (res.code === SERVER_RESPONSE_CODES.multipleTaskInProgress) {
-          console.log('SKAPPd');
+          console.log('SKAPPdd');
           sendMail(formatString(devEmail), res.data)
           .then(
             (data) => {
