@@ -81,7 +81,7 @@ const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
         console.log("Error:", err);
       });
   } else {
-    console.log("Invalid email address");
+    console.log("Invalid email address.");
   }
 };
 
