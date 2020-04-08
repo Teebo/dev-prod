@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "logDevWork": "node ./scripts/logDevWork.js"
+    "logDevWork": "sc.sh"
   },
   "husky": {
     "hooks": {
