@@ -10,17 +10,25 @@ const sendMail = require('../mailer/sendEmailForMultipleWorkItems');
 const formatString = str => str.replace(/(\r\n|\n|\r)/gm, "");
 
 const commitDetails = fs.readFileSync(`${homedir}/.git-temp-history/commit-hitory`, {encoding: 'utf-8'});
+
+console.log('commitDetails', commitDetails);
 const replacement = commitDetails.replace('\n', '');
 const delimeterPosition = replacement.indexOf('_');
+
+console.log('delimeterPosition', delimeterPosition);
 const commitMessage = replacement.substr(0, delimeterPosition);
 const commitHash = replacement.substr(delimeterPosition + 1, replacement.length);
 
-// const cwd = shell.pwd().stdout;
+console.log('commitHash', commitHash);
 
-// const packagesJSON = require(`${cwd}/package.json`);
+console.log('commitMessage', commitMessage);
+
+const cwd = shell.pwd().stdout;
+
+const packagesJSON = require(`${cwd}/package.json`);
 const devName = shell.exec("git config user.name").stdout;
 const devEmail = shell.exec("git config user.email").stdout;
-// const projectRemoteOrigin = shell.exec("git config remote.origin.url").stdout;
+const projectRemoteOrigin = shell.exec("git config remote.origin.url").stdout;
 
 const devDetails = {
   devName: formatString(devName),
@@ -60,7 +68,7 @@ const linkAndRecordUserCommitToDevOpsWorkItem = (commitHash) => {
       commitHash
     };
 
-    fetch("https://rocky-meadow-93622.herokuapp.com/api/workItems", {
+    fetch("http://localhost:8080/api/workItems", {
       method: "post",
       body: JSON.stringify(body),
       headers: { "Content-Type": "application/json" }
