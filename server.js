@@ -27,6 +27,7 @@ const handleError  =  (res, reason, message, code) => {
 }
 
 app.post('/api/devWorkHistoryLog', (req, res) => {
+
   const newDevWorkHistory = new DevWorkHistory(req.body);
 
   newDevWorkHistory.save((err, doc) => {

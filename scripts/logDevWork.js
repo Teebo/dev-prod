@@ -1,32 +1,38 @@
 #!/usr/bin/env node
 const { SERVER_RESPONSE_CODES } = require("../enums");
-
 const fs = require("fs");
 const fetch = require("node-fetch");
 const shell = require("shelljs");
+const homedir = require('os').homedir();
+
 const sendMail = require('../mailer/sendEmailForMultipleWorkItems');
 
 const formatString = str => str.replace(/(\r\n|\n|\r)/gm, "");
 
-let commitMessage = fs.readFileSync(process.argv[2], { encoding: "utf-8" });
-const cwd = shell.pwd().stdout;
+const commitDetails = fs.readFileSync(`${homedir}/.git-temp-history/commit-hitory`, {encoding: 'utf-8'});
+const replacement = commitDetails.replace('\n', '');
+const delimeterPosition = replacement.indexOf('_');
+const commitMessage = replacement.substr(0, delimeterPosition);
+const commitHash = replacement.substr(delimeterPosition + 1, replacement.length);
 
-const packagesJSON = require(`${cwd}/package.json`);
+// const cwd = shell.pwd().stdout;
+
+// const packagesJSON = require(`${cwd}/package.json`);
 const devName = shell.exec("git config user.name").stdout;
 const devEmail = shell.exec("git config user.email").stdout;
-const projectRemoteOrigin = shell.exec("git config remote.origin.url").stdout;
+// const projectRemoteOrigin = shell.exec("git config remote.origin.url").stdout;
 
 const body = {
   devName: formatString(devName),
   devEmail: formatString(devEmail),
-  projectName: formatString(packagesJSON.name),
+  projectName: '',
   logMessage: formatString(commitMessage),
   logTime: new Date().toISOString(),
   projectMetadata: {
-    name: formatString(packagesJSON.name),
-    repository: formatString(packagesJSON.repository || "")
+    name: '',
+    repository: ''
   },
-  projectRemoteOrigin: formatString(projectRemoteOrigin)
+  projectRemoteOrigin: ''
 };
 
 const recordUserCommitHistory = () => {
@@ -50,7 +56,7 @@ const recordUserCommitHistory = () => {
 const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
   if (validateEmail(formatString(devEmail))) {
     const body = {
-      email: 'thabo@basalt.co',
+      email: body.devEmail,
       commitHash
     };
 
@@ -92,7 +98,8 @@ const validateEmail = email => {
 };
 
 recordUserCommitHistory().then(res => {
-  const commitHash = shell.exec(`git rev-parse --verify HEAD`).stdout;
+  // const commitHash = shell.exec(`git rev-parse --verify HEAD`).stdout;
   
   linkAndRecordUserCommitToDevOpsWorkItem(commitHash);
 });
+
