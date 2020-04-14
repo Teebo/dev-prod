@@ -19,7 +19,7 @@ const generateEmailTemplate = (workItems, commitHash, forHTML=false) => {
         <td style="border: 1px solid #dddddd;
         text-align: left;
         padding: 15px;">
-          <a href="http://localhost:8080/api/workItems/log?emailAddress=${emailDev}&id=${id}&commitHash=${commitHash}" style="color: #fff!important;
+          <a href="https://rocky-meadow-93622.herokuapp.com/api/workItems/log?emailAddress=${emailDev}&id=${id}&commitHash=${commitHash}" style="color: #fff!important;
           background-color: #2196F3!important;
           padding: 8px;Fto
           text-decoration: none;
@@ -28,7 +28,7 @@ const generateEmailTemplate = (workItems, commitHash, forHTML=false) => {
       </tr>  
       `;
     } else {
-      workItemTableRows += `${workItem.id}  ${workItem.title} <a href="http://localhost:8080/api/workItems/log?emailAddress=${emailDev}&id=${id}&commitHash=${commitHash}" class="action-button">Mark as in progress</a>`
+      workItemTableRows += `${workItem.id}  ${workItem.title} <a href="https://rocky-meadow-93622.herokuapp.com/api/workItems/log?emailAddress=${emailDev}&id=${id}&commitHash=${commitHash}" class="action-button">Mark as in progress</a>`
     }
   });
 
