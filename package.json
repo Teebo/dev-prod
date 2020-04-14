@@ -2,6 +2,7 @@
   "name": "dev-prod",
   "version": "1.0.0",
   "description": "",
+  "bin": "./scripts/logDevWork.js",
   "main": "server.js",
   "scripts": {
     "logDevWork": "node ./scripts/logDevWork.js"

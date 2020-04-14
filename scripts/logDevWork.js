@@ -22,7 +22,7 @@ const devName = shell.exec("git config user.name").stdout;
 const devEmail = shell.exec("git config user.email").stdout;
 // const projectRemoteOrigin = shell.exec("git config remote.origin.url").stdout;
 
-const body = {
+const devDetails = {
   devName: formatString(devName),
   devEmail: formatString(devEmail),
   projectName: '',
@@ -40,7 +40,7 @@ const recordUserCommitHistory = () => {
     "https://tranquil-crag-92279.herokuapp.com/api/devWorkHistoryLog",
     {
       method: "post",
-      body: JSON.stringify(body),
+      body: JSON.stringify(devDetails),
       headers: { "Content-Type": "application/json" }
     }
   )
@@ -53,10 +53,10 @@ const recordUserCommitHistory = () => {
     });
 };
 
-const linkAndRecordUserCommitToDevOpsWorkItem = commitHash => {
+const linkAndRecordUserCommitToDevOpsWorkItem = (commitHash) => {
   if (validateEmail(formatString(devEmail))) {
     const body = {
-      email: body.devEmail,
+      email: devDetails.devEmail,
       commitHash
     };
 

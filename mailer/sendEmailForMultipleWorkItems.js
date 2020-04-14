@@ -66,8 +66,8 @@ const sendMail = (devEmail, commitHash, workItems) => {
     port: 465,
     secure: true, // use SSL
     auth: {
-      user: "rellomailer@gmail.com",
-      pass: "Rello@123"
+      user: "srcpolice@gmail.com",
+      pass: "u4dX**ng"
     }
   });
 
