@@ -6,11 +6,6 @@
   "scripts": {
     "logDevWork": "node ./scripts/logDevWork.js"
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "npm run logDevWork $HUSKY_GIT_PARAMS"
-    }
-  },
   "author": "",
   "license": "ISC",
   "dependencies": {
